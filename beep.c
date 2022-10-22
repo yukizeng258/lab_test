@@ -15,9 +15,12 @@ while (count --)
 
 void led_blink()
 {
-GPL2CON = 0x00000001;
-GPK1CON = 0x00000010;
-GPD0CON = 0x00000001;
+GPL2CON &= 0xfffffffe;
+GPL2CON |= 0x00000001;
+GPK1CON &= 0xffffffef;
+GPK1CON |= 0x00000010;
+GPD0CON &= 0xfffffffe;
+GPD0CON |= 0x00000001;
 while(1)
 	{	
 	GPL2DAT=1;

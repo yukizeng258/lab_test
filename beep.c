@@ -15,21 +15,21 @@ while (count --)
 
 void led_blink()
 {
-GPL2CON &= 0xfffffffe;
+GPL2CON &= 0xfffffff0;
 GPL2CON |= 0x00000001;
-GPK1CON &= 0xffffffef;
+GPK1CON &= 0xffffff0f;
 GPK1CON |= 0x00000010;
-GPD0CON &= 0xfffffffe;
+GPD0CON &= 0xfffffff0;
 GPD0CON |= 0x00000001;
 while(1)
 	{	
-	GPL2DAT=1;
-	GPK1DAT=0;
-	GPD0DAT=1;
+	GPL2DAT &= 0xf0;
+	GPK1DAT &=0xf0;
+	GPD0DAT &=0xf0;
 	delay(0x80000);
-	GPL2DAT=0;
-	GPK1DAT=0x2;
-	GPD0DAT=0;
+	GPL2DAT |= 0x1;
+	GPK1DAT |=0x02;
+	GPD0DAT |=0xf1;
 	delay(0x80000);
 	}
 } 

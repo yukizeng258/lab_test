@@ -5,14 +5,14 @@ _start:
 mov r1, #1 * set GPM4_0 as output
 */
 ldr r0, =0x11000100
-mov r1, #1
-str r1, [r0] // 写入GPM4CON
-ldr r0, =0x11000060
-mov r1, #2
-str r1, [r0]
-ldr r0, =0x110000A0
-mov r1, #1
-str r1, [r0] 
+bic r0,r0,#0xfffffffe
+orr r0,r0,#0x00000001
+ldr r5, =0x11000060
+bic r5,r5,#0xffffffef
+orr r5,r5,#0x00000010
+ldr r6, =0x110000A0
+bic r6,r6,#0xffffff5f
+orr r6,r6,#0x000000A0
 
 leds_loop:
 /*
